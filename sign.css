@@ -27,11 +27,6 @@
   padding: 0.5rem 0rem;
 }
 
-.item {
-  /* box-sizing: border-box;
-  border: 0.2rem solid blue; */
-}
-
 .row-time {
   display: flex;
   justify-content: center;
@@ -41,4 +36,8 @@
 
 .arrival {
   text-align: end;
+}
+
+.position {
+  text-align: center;
 }
