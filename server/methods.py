@@ -1,9 +1,9 @@
 import requests
 import json
 import os
+
 from jsonpath_ng.jsonpath import Fields, Slice
 from jsonpath_ng.ext import parse
-
 from constants import base_url, app_key
 
 # Call a given endpoint with the appropriate query parameters
@@ -28,7 +28,8 @@ def get_arrivals(stop_point_id, platform_name):
     
     match = [x.value for x in match]
     mapped = chunks(match, 2)
-    mapped = map(lambda x: {"timeToStation": x[0], "towards": x[1]}, mapped)
+    mapped = map(lambda x: {"timeToStation": -(x[0] // -60), "towards": x[1]}, mapped)
 
-    output = json.dumps(list(mapped))
+    time_sorted = sorted(list(mapped), key= lambda d: d['timeToStation'])
+    output = json.dumps(time_sorted)
     return output
