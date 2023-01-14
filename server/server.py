@@ -1,8 +1,10 @@
 from flask import Flask
 from flask import request
+from flask_cors import CORS
 import methods
 
 app = Flask(__name__)
+CORS(app)
 
 @app.route("/arrivals", methods=['GET'])
 def arrivals():
