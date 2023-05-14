@@ -2,19 +2,27 @@ let platform = "Northbound%20-%20Platform%201";
 let stopPointId = "940GZZLUBLR"
 let arrivals = [];
 let dataPosition = 1;
+let time = '';
 
 // Initial requests
-getData()
+getData();
+cycleData();
 
-// Fetch data every 10 seconds 
+// Update time @ 10Hz
+setInterval(() => {
+  let currentdate = new Date(); 
+  let newTime = currentdate.toLocaleTimeString("en-GB");
+  if (time !== newTime) {
+    time = newTime;
+    document.querySelector('.row-time').textContent = time;
+  }
+}, 100)
+
+// Fetch & cycle bottom row every 10 seconds 
 setInterval(() => {
   getData();
-}, 10000)
-
-// Scroll row 2 every 5 seconds
-setInterval(() => {
   cycleData();
-}, 5000)
+}, 10000)
 
 async function getData() {
   fetch(`http://127.0.0.1:5000/arrivals?stopPointId=${stopPointId}&platformName=${platform}`)
@@ -25,7 +33,7 @@ async function getData() {
       arrivals = data;
       document.querySelector('.destination1').textContent = data[0]["towards"];
       document.querySelector('.arrival1').textContent = data[0]["timeToStation"] + " mins";
-      cycleData();
+      //cycleData();
     })
 }
 
@@ -43,15 +51,3 @@ function cycleData() {
   document.querySelector('.arrival2').textContent = arrivals[dataPosition]["timeToStation"] + " mins";
   changePosition();
 }
-
-let time = '';
-
-// calculate time every 100ms 
-setInterval(() => {
-  let currentdate = new Date(); 
-  let newTime = currentdate.toLocaleTimeString("en-GB");
-  if (time !== newTime) {
-    time = newTime;
-    document.querySelector('.row-time').textContent = time;
-  }
-}, 100)
