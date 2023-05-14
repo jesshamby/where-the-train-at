@@ -1,0 +1,43 @@
+@font-face {
+  font-family: 'London Underground Regular';
+  src: url('londonUndergroundRegular.ttf')format('truetype');
+}
+
+@font-face {
+  font-family: 'London Underground Bold';
+  src: url('londonUndergroundBold.ttf')format('truetype');
+}
+
+@font-face {
+  font-family: 'London Underground Heavy';
+  src: url('londonUndergroundHeavy.ttf')format('truetype');
+}
+
+.sign {
+  background-color: black;
+  color: orange;
+  font-family: 'London Underground Regular';
+  font-size: 2rem;
+  padding: 1rem;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr 10fr 2fr;
+  padding: 0.5rem 0rem;
+}
+
+.row-time {
+  display: flex;
+  justify-content: center;
+  font-family: 'London Underground Heavy';
+  font-size: 2.5rem;
+}
+
+.arrival {
+  text-align: end;
+}
+
+.position {
+  text-align: center;
+}
