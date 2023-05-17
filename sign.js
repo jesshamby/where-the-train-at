@@ -7,7 +7,6 @@ let dataPosition = 1;
 let time = '';
 let refreshData = false;
 let conveyor = document.getElementById("animate");
-let timeButton = document.querySelector(".row-time");
 
 getData();
 cycleData();
@@ -32,6 +31,15 @@ setInterval(() => {
     cycleData();
   }
 }, 2500)
+
+//#endregion
+
+//#region - navigation
+
+let timeButton = document.querySelector(".row-time");
+timeButton.onclick = () => {
+  window.location.href = "./pick-a-station.html"
+}
 
 //#endregion
 
@@ -69,5 +77,3 @@ function cycleData() {
 }
 
 //#endRegion
-
-console.log("hi")

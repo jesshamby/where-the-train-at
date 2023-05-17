@@ -40,6 +40,10 @@
   font-size: 2.5rem;
 }
 
+.row-time:hover {
+  cursor: pointer;
+}
+
 .arrival {
   text-align: end;
 }

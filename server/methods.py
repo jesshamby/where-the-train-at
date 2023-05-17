@@ -33,3 +33,8 @@ def get_arrivals(stop_point_id, platform_name):
     time_sorted = sorted(list(mapped), key= lambda d: d['timeToStation'])
     output = json.dumps(time_sorted)
     return output
+
+# Return list of stops as JSON
+def get_stops():
+    with open("../data/stops.json", "r") as f:
+       return json.loads(f.read()) 
