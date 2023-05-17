@@ -22,7 +22,8 @@ def get_arrivals(stop_point_id, platform_name):
     endpoint = "/StopPoint/{stop_point_id}/arrivals".format(stop_point_id = stop_point_id)
     body = call_endpoint(endpoint, {})["body"]
 
-    query_string = "$[?(@.platformName == '{platform_name}')].['timeToStation', 'towards']".format(platform_name=platform_name)
+    # query_string = "$[?(@.platformName == '{platform_name}')].['timeToStation', 'towards']".format(platform_name=platform_name)
+    query_string = "$[*].['timeToStation', 'towards']"
     expression = parse(query_string)
     match = expression.find(body)
     

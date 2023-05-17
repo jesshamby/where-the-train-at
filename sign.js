@@ -1,7 +1,8 @@
 //#region - declair variables and get data immediately
+const urlParams = new URLSearchParams(window.location.search);
 
 let platform = "Eastbound%20-%20Platform%201";
-let stopPointId = "940GZZLULVT"
+let stopPointId = urlParams.get("stopPointId") || "940GZZLULVT";
 let arrivals = [];
 let dataPosition = 1;
 let time = '';

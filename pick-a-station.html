@@ -4,12 +4,13 @@
 <head>
   <meta charset="UTF-8">
   <link rel="stylesheet" href="sign.css"/>
-  <script src="pick-a-station.js" type="module" defer></script>
-  <script type="text/javascript" src="stops.json"></script>
+  <script src="pick-a-station.js" defer></script>
   <title>Pick a Station</title>
 </head>
 
 <body>
-
+  <div id="form-container">
+    <select id="stops" onchange ="stationSelected()"></select>
+  </div>
 </body>
 </html>
