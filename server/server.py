@@ -15,3 +15,12 @@ def arrivals():
 @app.route("/test", methods=['GET'])
 def test():
     return request.args.get('testParam', 'DefaultValHere')
+
+@app.route("/stops", methods=["GET"])
+def stops():
+    return methods.get_stops()
+
+@app.route("/platforms", methods=["GET"])
+def platforms():
+    stop_point_id = request.args.get('stopPointId')
+    return methods.get_platforms(stop_point_id)
