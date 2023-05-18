@@ -22,8 +22,8 @@ def get_arrivals(stop_point_id, platform_name):
     endpoint = "/StopPoint/{stop_point_id}/arrivals".format(stop_point_id = stop_point_id)
     body = call_endpoint(endpoint, {})["body"]
 
-    # query_string = "$[?(@.platformName == '{platform_name}')].['timeToStation', 'towards']".format(platform_name=platform_name)
-    query_string = "$[*].['timeToStation', 'towards']"
+    query_string = "$[?(@.platformName == '{platform_name}')].['timeToStation', 'towards']".format(platform_name=platform_name)
+    # query_string = "$[*].['timeToStation', 'towards']"
     expression = parse(query_string)
     match = expression.find(body)
     
@@ -39,3 +39,17 @@ def get_arrivals(stop_point_id, platform_name):
 def get_stops():
     with open("../data/stops.json", "r") as f:
        return json.loads(f.read()) 
+
+# Get platforms for a given StopPoint
+def get_platforms(stop_point_id):
+    endpoint = "/StopPoint/{stop_point_id}/arrivals".format(stop_point_id = stop_point_id)
+    response = call_endpoint(endpoint, {})
+    body = response["body"]
+    statusCode = response["status_code"]
+    
+    query_string = "$[*].platformName"
+    expression = parse(query_string)
+    match = expression.find(body)
+    match = [x.value for x in match]
+    match = list(set(match))
+    return json.dumps(match)
