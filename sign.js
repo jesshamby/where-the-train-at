@@ -31,7 +31,7 @@ setInterval(() => {
     getData();
     cycleData();
   }
-}, 2500)
+}, 5000)
 
 //#endregion
 
